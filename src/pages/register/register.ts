@@ -8,7 +8,7 @@ import { EmailValidator } from '../../validators/email';
 
 import { LoginPage } from '../login/login';
 
-import { Mess } from '../../models/model';
+import { User } from '../../models/model';
 
 @Component({
   selector: 'page-register',
@@ -19,10 +19,9 @@ export class RegisterPage {
   private signupForm: FormGroup;
   private loading: Loading;
   
-  private user: Mess={
-    messId:'',
-    ownerName:'',
-    messName:'',
+  private user: User={
+    userId:'',
+    userName:'',
     email:'',
     contact: null,
     address: null
@@ -39,8 +38,7 @@ export class RegisterPage {
     this.menu.enable(false, 'myMenu');
     
     this.signupForm = formBuilder.group({
-      fullName: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.pattern('^[a-zA-Z\\s]*$')])],
-      messName: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.pattern('^[a-zA-Z\\s]*$')])],
+      userName: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.pattern('^[a-zA-Z\\s]*$')])],
       email:    ['', Validators.compose([Validators.required, EmailValidator.isValid])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],      
       contact:  ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
@@ -71,9 +69,8 @@ export class RegisterPage {
 
   addUser(user){
 
-    this.user.messId=user.uid;
-    this.user.messName=this.signupForm.value.messName;
-    this.user.ownerName=this.signupForm.value.fullName;
+    this.user.userId=user.uid;
+    this.user.userName=this.signupForm.value.messName;
     this.user.email=this.signupForm.value.email;
     this.user.contact=this.signupForm.value.contact;
     this.user.address={
@@ -81,12 +78,12 @@ export class RegisterPage {
       city:this.signupForm.value.city
     };
 
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`mess/${user.uid}`);
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`user/${user.uid}`);
     
     userRef.set(this.user)
     .then( data => {
       this.authProvider.getUser().updateProfile({
-        displayName: this.user.ownerName,
+        displayName: this.user.userName,
         photoURL: ""
       })
       .then( data=> {

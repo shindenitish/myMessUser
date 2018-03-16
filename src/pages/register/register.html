@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title >
-      myMessAdmin (Beta)
+      myMess (Beta)
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -9,21 +9,13 @@
   <ion-content padding>
     <ion-list inset>
       <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>        
-        <ion-label stacked>Owner Name</ion-label>
+        <ion-label stacked>Full Name</ion-label>
         <ion-item>
-          <ion-input formControlName="fullName" type="text"></ion-input>
+          <ion-input formControlName="userName" type="text"></ion-input>
         </ion-item>
-        <p *ngIf="!signupForm.controls.fullName.valid  && signupForm.controls.fullName.dirty">
+        <p *ngIf="!signupForm.controls.userName.valid  && signupForm.controls.userName.dirty">
           Enter a valid name (min. 5 characters)
         </p>
-
-        <ion-label stacked>Mess Name</ion-label>
-        <ion-item>
-          <ion-input formControlName="messName" type="text"></ion-input>
-        </ion-item>
-        <p *ngIf="!signupForm.controls.messName.valid  && signupForm.controls.messName.dirty">
-          Enter a valid mess name (min. 5 characters)
-        </p>        
         
         <ion-label stacked>Email</ion-label>
         <ion-item>

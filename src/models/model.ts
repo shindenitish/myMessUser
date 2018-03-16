@@ -1,7 +1,6 @@
-export interface Mess {
-    messId: string,
-    ownerName: string,
-    messName: string,
+export interface User {
+    userId: string,
+    userName: string,
     email: string,
     contact: number,
     address: {

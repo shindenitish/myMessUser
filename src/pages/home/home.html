@@ -9,36 +9,15 @@
 <ion-content>
   <ion-card *ngFor="let item of items | async">
     <ion-card-content>
-      <ion-card-title>
-        {{item.menuName}}
+      <ion-card-title (click)="viewMess(item.messId, item.messName)">
+        {{item.messName}}
       </ion-card-title>
       <p>
-        {{item.timeFrom | date: 'dd-MMMM ( hh:mm'}} - {{item.timeTo | date: 'hh:mm a )'}}<br/>
-        Rate {{item.rate}} Rupees<br/>
-        {{item.description}}
+        {{item.address.address}}<br/>
+        {{item.address.city}}<br/>
+        {{item.ownerName}} ({{item.contact}})<br/>
+        {{item.email}}
       </p>
     </ion-card-content>
-    <ion-row>
-        <ion-col col-1>
-            <button ion-button icon-only clear small>
-              <div style="width:20px; height:20px;">
-                <img *ngIf="item.menuType=='false'" src="assets/imgs/veg.png">
-                <img *ngIf="item.menuType=='true'" src="assets/imgs/non-veg.png">
-              </div>
-            </button>
-          </ion-col>
-      <ion-col col-5>
-        <button ion-button clear small>
-            <div *ngIf="item.menuCategory==0">Breakfast</div>
-            <div *ngIf="item.menuCategory==1">Lunch</div>
-            <div *ngIf="item.menuCategory==2">Dinner</div>
-        </button>
-      </ion-col>      
-      <ion-col col-5>
-        <button ion-button clear small>
-          <div>1000 Reviews</div>
-        </button>
-      </ion-col>
-    </ion-row>
   </ion-card>  
 </ion-content>

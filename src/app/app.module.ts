@@ -11,6 +11,8 @@ import { HomePage } from '../pages/home/home';
 import { CreatePage } from '../pages/create/create';
 import { ProfilePage } from '../pages/profile/profile';
 import { ArchievePage } from '../pages/archieve/archieve';
+import { MessDetailPage } from '../pages/mess-detail/mess-detail';
+
 
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -43,6 +45,7 @@ const config = {
     CreatePage,
     ProfilePage,
     ArchievePage,
+    MessDetailPage,
 
     LoginPage,
     RegisterPage,
@@ -68,6 +71,7 @@ const config = {
     CreatePage,
     ProfilePage,
     ArchievePage,
+    MessDetailPage,
     
     LoginPage,
     RegisterPage,

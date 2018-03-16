@@ -70,7 +70,7 @@ export class RegisterPage {
   addUser(user){
 
     this.user.userId=user.uid;
-    this.user.userName=this.signupForm.value.messName;
+    this.user.userName=this.signupForm.value.userName;
     this.user.email=this.signupForm.value.email;
     this.user.contact=this.signupForm.value.contact;
     this.user.address={

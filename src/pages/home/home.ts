@@ -3,9 +3,10 @@ import { NavController } from 'ionic-angular';
 
 import { AngularFirestore, AngularFirestoreCollection} from 'angularfire2/firestore';
 
-import { Menu } from '../../models/model';
-import { AuthProvider } from '../../providers/auth/auth';
+import { Mess } from '../../models/model';
 import { Observable } from 'rxjs/Observable';
+
+import { MessDetailPage } from '../mess-detail/mess-detail';
 
 @Component({
   selector: 'page-home',
@@ -13,15 +14,16 @@ import { Observable } from 'rxjs/Observable';
 })
 export class HomePage {
 
-  items: Observable<Menu[]>;
+  items: Observable<Mess[]>;
   
-  constructor(public navCtrl: NavController, 
-  private authProvider:AuthProvider,
+  constructor(public navCtrl: NavController,
   private afs:AngularFirestore) {
-    var d1= new Date();
-    d1.setHours(0, 0, 0, 0);
-    const collRef: AngularFirestoreCollection<Menu> = this.afs.collection(`mess/${this.authProvider.getUser().uid}/menu`, ref => ref.where('timeFrom', '>=', d1).orderBy('timeFrom'));    
+    const collRef: AngularFirestoreCollection<Mess> = this.afs.collection(`mess`);    
     this.items=collRef.valueChanges();
+  }
+
+  viewMess(messId, messName){
+    this.navCtrl.push(MessDetailPage, { mid: messId, mName: messName } );
   }
 
 }
